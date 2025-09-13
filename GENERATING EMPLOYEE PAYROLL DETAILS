@@ -1,0 +1,221 @@
+//For Packages, Folder Name should be employee
+//File Name should be Employee.java
+package employee;
+public class Employee
+{
+private String name;
+private String id;
+private String address;
+private String mailId;
+private String mobileNo;
+public Employee(String name, String id, String address, String mailId, String mobileNo)
+{
+this.name= name;
+this.id= id;
+this.address= address;
+this.mailId= mailId;
+this.mobileNo= mobileNo;
+}
+
+public void display()
+{
+System.out.println("Emp_Name : "+ name + "\t" + "Emp_id : "+ id);
+System.out.println("Address : " + address);
+System.out.println("Mail_id : "+ mailId + "\t" + "Mobile_no : " + mobileNo);
+}
+public void paySlip()
+{
+}
+}
+//For Packages, Folder Name should be employee
+//File Name should be Programmer.java
+package employee;
+public class Programmer extends Employee
+{
+private float bPay;
+private String des;
+public Programmer(String name, String id, String address, String mailId, String mobileNo,
+float bPay, String des)
+{
+super(name, id, address, mailId, mobileNo);
+this.bPay= bPay;
+this.des= des;
+}
+public void paySlip()
+{
+float da=bPay*97/100;
+float hra=bPay*10/100;
+double grossSalary=bPay + da + hra;
+float pf=bPay*12/100;
+double scf=bPay*0.1/100;
+double netSalary=grossSalary - pf - scf;
+System.out.println("------------ Employees Pay Slips ------------");
+super.display();
+System.out.println("Designation: "+des);
+System.out.println("Basic_Pay: "+bPay);
+System.out.println("Gross Salary : "+ grossSalary + "\t" + "Net Salary : " + netSalary);
+System.out.println("------------ End of the Statements -----------");
+}
+}
+
+//For Packages, Folder Name should be employee
+// File Name should be AssistantProfessor.java
+package employee;
+public class AssistantProfessor extends Employee
+{
+private float bPay;
+private String des;
+public AssistantProfessor(String name, String id, String address, String mailId, String
+mobileNo, float bPay, String des)
+{
+super(name, id, address, mailId, mobileNo);
+this.bPay= bPay;
+this.des= des;
+}
+public void paySlip()
+{
+float da=bPay*97/100;
+float hra=bPay*10/100;
+double grossSalary=bPay + da + hra;
+float pf=bPay*12/100;
+double scf=bPay*0.1/100;
+double netSalary=grossSalary - pf - scf;
+System.out.println("------------ Employees Pay Slips ------------");
+super.display();
+System.out.println("Designation: "+des);
+System.out.println("Basic_Pay: "+bPay);
+System.out.println("Gross Salary : "+ grossSalary + "\t" + "Net Salary : " + netSalary);
+System.out.println("------------ End of the Statements -----------");
+}
+}
+//For Packages, Folder Name should be employee
+//File Name should be AssociateProfessor.java
+package employee;
+public class AssociateProfessor extends Employee
+{
+private float bPay;
+private String des;
+public AssociateProfessor(String name, String id, String address, String mailId, String
+mobileNo, float bPay, String des)
+{
+super(name, id, address, mailId, mobileNo);
+
+this.bPay= bPay;
+this.des= des;
+}
+public void paySlip()
+{
+float da=bPay*97/100;
+float hra=bPay*10/100;
+double grossSalary=bPay + da + hra;
+float pf=bPay*12/100;
+double scf=bPay*0.1/100;
+double netSalary=grossSalary - pf - scf;
+System.out.println("------------ Employees Pay Slips ------------");
+super.display();
+System.out.println("Designation: "+des);
+System.out.println("Basic_Pay: "+bPay);
+System.out.println("Gross Salary : "+ grossSalary + "\t" + "Net Salary : " + netSalary);
+System.out.println("------------ End of the Statements -----------");
+}
+}
+//For Packages, Folder Name should be employee
+//File Name should be Professor.java
+package employee;
+public class Professor extends Employee
+{
+private float bPay;
+private String des;
+public Professor(String name, String id, String address, String mailId, String mobileNo, float
+bPay, String des)
+{
+super(name, id, address, mailId, mobileNo);
+this.bPay= bPay;
+this.des= des;
+}
+public void paySlip()
+{
+float da=bPay*97/100;
+float hra=bPay*10/100;
+double grossSalary=bPay + da + hra;
+float pf=bPay*12/100;
+double scf=bPay*0.1/100;
+double netSalary=grossSalary - pf - scf;
+System.out.println("------------ Employees Pay Slips ------------");
+
+super.display();
+System.out.println("Designation: "+des);
+System.out.println("Basic_Pay: "+bPay);
+System.out.println("Gross Salary : "+ grossSalary + "\t" + "Net Salary : " + netSalary);
+System.out.println("------------ End of the Statements -----------");
+}
+}
+//File Name should be Emp.java separate this file from above folder
+import employee.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Emp
+{
+Employee e;
+ArrayList<Employee> obj= new ArrayList<>();
+Scanner get= new Scanner(System.in);
+public void addEmployee()
+{
+System.out.println("Enter the Emp_Name:");
+String name = get.next();
+System.out.println("Enter the Emp_id:");
+String id = get.next();
+System.out.println("Enter the Address:");
+String address = get.next();
+System.out.println("Enter the Mail_id:");
+String mailId = get.next();
+System.out.println("Enter the Mobile_no:");
+String mobileNo = get.next();
+System.out.println("Enter the Designation:");
+String des = get.next();
+System.out.println("Enter the Basic_Pay:");
+float bPay = get.nextFloat();
+if(des.equalsIgnoreCase("Programmer"))
+{
+e= new Programmer(name, id, address, mailId, mobileNo, bPay, des);
+obj.add(e);
+}
+else if(des.equalsIgnoreCase("AssistantProfessor"))
+{
+e= new AssistantProfessor(name, id, address, mailId, mobileNo, bPay, des);
+obj.add(e);
+
+}
+else if(des.equalsIgnoreCase("AssociateProfessor"))
+{
+e= new AssociateProfessor(name, id, address, mailId, mobileNo, bPay, des);
+obj.add(e);
+}
+else if(des.equalsIgnoreCase("Professor"))
+{
+e= new Professor(name, id, address, mailId, mobileNo, bPay, des);
+obj.add(e);
+}
+}
+public void displayEmployee()
+{
+for(Employee e:obj)
+{
+e.paySlip();
+}
+}
+public static void main(String args[]) throws IOException
+{
+Emp x= new Emp();
+String check;
+do
+{
+x.addEmployee();
+System.out.println("Do you wnat continue press 'y'");
+check=x.get.next();
+}
+while(check.equalsIgnoreCase("y"));
+x.displayEmployee();
+}
+}
