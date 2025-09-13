@@ -1,0 +1,91 @@
+//File Name should be Data.java
+import java.sql.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class Data extends JFrame implements ActionListener
+{
+JTextField id;
+JTextField name;
+JButton next;
+JButton addnew;
+JPanel p;
+static ResultSet res;
+static Connection conn;
+static Statement stat;
+public Data()
+{
+super("My Application");
+Container c = getContentPane();
+c.setLayout(new GridLayout(5,1));
+id = new JTextField(20);
+name = new JTextField(20);
+next = new JButton("Next BOOK");
+
+p = new JPanel();
+c.add(new JLabel("ISBN Number",JLabel.CENTER));
+c.add(id);
+c.add(new JLabel("Book Name",JLabel.CENTER));
+c.add(name);
+c.add(p);
+p.add(next);
+next.addActionListener(this);
+pack();
+setVisible(true);
+addWindowListener(new WIN());
+}
+public static void main(String args[])
+{
+Data d = new Data();
+try
+{
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+conn = DriverManager.getConnection("jdbc:odbc:stu");
+// cust is the DSN Name
+stat = conn.createStatement();
+res = stat.executeQuery("Select * from stu"); // stu is the table name
+res.next();
+}
+catch(Exception e)
+{
+System.out.println("Error" +e);
+}
+d.showRecord(res);
+}
+public void actionPerformed(ActionEvent e)
+{
+if(e.getSource() == next)
+{
+try
+{
+res.next();
+}
+catch(Exception e)
+{
+}
+showRecord(res);
+}
+}
+public void showRecord(ResultSet res)
+{
+try
+
+{
+id.setText(res.getString(2));
+name.setText(res.getString(3));
+}
+catch(Exception e)
+{
+}
+}//end of the main
+//Inner class WIN implemented
+class WIN extends WindowAdapter
+{
+public void windowClosing(WindowEvent w)
+{
+JOptionPane jop = new JOptionPane();
+jop.showMessageDialog(null,"Thank you","My
+Application",JOptionPane.QUESTION_MESSAGE);
+}
+}
+}
